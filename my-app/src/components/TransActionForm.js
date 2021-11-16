@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const TransActionForm = ({addTransAction}) => {
   const [formValues, setFormValues] = useState({
     type: "Expense",
     desc: "",
-    amount: 0,
+    amount: '',
   });
+
 
   const changeHandler = (event) => {
     setFormValues({ ...formValues, [event.target.name]: event.target.value });
@@ -20,16 +21,22 @@ const TransActionForm = ({addTransAction}) => {
     <div>
       <form className="formContainer" onSubmit={submitHandler}>
         <input
+        className="valueInput"
           type="text"
           name="desc"
           value={formValues.desc}
           onChange={changeHandler}
+          placeholder="Description"
+          required
         />
         <input
+          className="valueInput"
           type="number"
           name="amount"
           value={formValues.amount}
           onChange={changeHandler}
+          placeholder="Amount"
+          required
         />
         <div>
           <input
@@ -49,7 +56,7 @@ const TransActionForm = ({addTransAction}) => {
           />
           <label>Income</label>
         </div>
-        <button type="submit">Add transaction</button>
+        <button className="btn subBtn" type="submit">Add transaction</button>
       </form>
     </div>
   );
